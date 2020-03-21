@@ -1,0 +1,26 @@
+{
+  "Firestarter": {
+    "board": "#000",
+    "alive": "#fd0",
+    "rotting": "#f80",
+    "dust": "#800"
+  },
+  "Ocean": {
+    "board": "#008",
+    "alive": "#df0",
+    "rotting": "#8f0",
+    "dust": "#080"
+  },
+  "Brownian": {
+    "board": "#520",
+    "alive": "#fe0",
+    "rotting": "#fa0",
+    "dust": "#960"
+  },
+  "Rose": {
+    "board": "#800",
+    "alive": "#fdd",
+    "rotting": "#eaa",
+    "dust": "#a55"
+  }
+}

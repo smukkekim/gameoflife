@@ -1,38 +1,51 @@
 export default class Cell {
-    constructor(x,y,state) {
-        if (state === undefined) { state = Math.random() >= 0.5; }
-        this.alive = state;
-        this.farpast = undefined;
-        this.past = undefined;
-        this.future = undefined;
-        this.col = x;
-        this.row = y;
-    }
+  constructor(x, y, state = Math.random() >= 0.6) {
+    this.alive = state;
+    this.dust = undefined;
+    this.rotting = undefined;
+    this.future = undefined;
+    this.col = x;
+    this.row = y;
+    this.colorScheme = {
+      alive: '#fd0',
+      rotting: '#f80',
+      dust: '800',
+    };
+  }
 
-    getColor() {
-        return this.alive ? '#fd0' : this.past ? '#f80' : this.farpast ? '#800' : null;
+  getColor() {
+    if (this.alive) {
+      return this.colorScheme.alive;
     }
+    if (this.rotting) {
+      return this.colorScheme.rotting;
+    }
+    if (this.dust) {
+      return this.colorScheme.dust;
+    }
+    return null;
+  }
 
-    kill() {
-        this.alive = false;
-    }
+  kill() {
+    this.alive = false;
+  }
 
-    resurrect() {
-        this.alive = true;
-    }
+  resurrect() {
+    this.alive = true;
+  }
 
-    convict() {
-        this.future = false;
-    }
+  convict() {
+    this.future = false;
+  }
 
-    pardon() {
-        this.future = true;
-    }
+  pardon() {
+    this.future = true;
+  }
 
-    advance() {
-        this.farpast = this.past;
-        this.past = this.alive;
-        this.alive = this.future === undefined ? this.alive : this.future;
-        this.future = undefined;
-    }
+  advance() {
+    this.dust = this.rotting;
+    this.rotting = this.alive;
+    this.alive = this.future === undefined ? this.alive : this.future;
+    this.future = undefined;
+  }
 }
